@@ -18,7 +18,11 @@ function App() {
 		queryKey: ["authUser"],
 		queryFn: async () => {
 			try {
-				const response = await fetch('/api/auth/me');
+				const response = await fetch('/api/auth/me', {
+					headers: {
+					  Accept: 'application/json', // Set the desired content type
+					},
+				  });
 				const contentType = response.headers.get('Content-Type');
 				console.log(contentType);
 				if (!contentType || !contentType.includes('application/json')) {
